@@ -1,9 +1,8 @@
 {
   "scripts": {
-  "start": "react-scripts start",
-  "build": "react-scripts build"
-},
-
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
@@ -15,11 +14,11 @@
     "mongodb": "^6.19.0",
     "mongoose": "^8.18.1",
     "morgan": "^1.10.1",
+    "react-scripts": "^5.0.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
   }
-  
 }
