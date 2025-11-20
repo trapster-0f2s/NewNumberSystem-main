@@ -31,17 +31,21 @@ app.use(cors({
       'http://localhost:3000',
       'http://localhost:5173',
       'http://localhost:4173',
-      process.env.FRONTEND_URL,
+      process.env.FRONTEND_URL,         
+      'https://numbersystemv2.netlify.app', 
       'https://vercel.app',
       'https://*.vercel.app',
     ];
 
-    if (!origin) return callback(null, true);
+    if (!origin) return callback(null, true);  // allow requests like postman or server-side calls
 
     const isAllowed = allowedOrigins.some((allowedOrigin) => {
       if (allowedOrigin === origin) return true;
-      if (allowedOrigin === 'https://*.vercel.app' &&
-        /^https:\/\/[\w-]+\.vercel\.app$/.test(origin)) return true;
+      if (
+        allowedOrigin === 'https://*.vercel.app' &&
+        /^https:\/\/[\w-]+\.vercel\.app$/.test(origin)
+      )
+        return true;
       return false;
     });
 
@@ -55,6 +59,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
 
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
