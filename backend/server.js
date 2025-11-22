@@ -34,7 +34,7 @@ app.use(cors({
       process.env.FRONTEND_URL,         
       'https://numbersystemv2.netlify.app', 
       'https://vercel.app',
-      'https://*.vercel.app',
+      ,
     ];
 
     if (!origin) return callback(null, true);  // allow requests like postman or server-side calls
