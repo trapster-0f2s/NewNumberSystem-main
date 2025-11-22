@@ -1240,7 +1240,7 @@
         document.getElementById('signupPassword').addEventListener('input', function() {
             const password = this.value;
             const confirmPassword = document.getElementById('confirmPassword');
-            if (password.length < 6) this.setCustomValidity('Password must be at least 6 characters long');
+            if (password.length < 8) this.setCustomValidity('Password must be at least 6 characters long');
             else this.setCustomValidity('');
             if (confirmPassword.value && confirmPassword.value !== password) {
                 confirmPassword.setCustomValidity('Passwords do not match');
