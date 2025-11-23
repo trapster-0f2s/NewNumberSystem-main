@@ -639,7 +639,7 @@
     </div>
 
     <script>
-        const API_BASE_URL = 'https://numbersystembackend.onrender.com'; 
+        const API_BASE_URL = 'https://numbersystembackend.onrender.com/api'; // ensure API prefix
         let authToken = null;
         let currentUser = null;
         let allNumbers = [];
@@ -694,9 +694,16 @@
             if (authToken) config.headers['Authorization'] = `Bearer ${authToken}`;
             try {
                 const response = await fetch(url, config);
-                const data = await response.json();
-                if (!response.ok) throw new Error(data.error || 'API request failed');
-                return data;
+                const contentType = response.headers.get('content-type') || '';
+                if (contentType.includes('application/json')) {
+                    const data = await response.json();
+                    if (!response.ok) throw new Error(data.error || 'API request failed');
+                    return data;
+                } else {
+                    // server returned HTML or plain text (likely a 404/page), read as text for diagnostics
+                    const text = await response.text();
+                    throw new Error(`API request failed: ${response.status} ${response.statusText} - ${text.slice(0, 200)}`);
+                }
             } catch (error) {
                 console.error('API call error:', error);
                 throw error;
