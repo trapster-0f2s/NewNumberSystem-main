@@ -457,7 +457,7 @@
                     </div>
                     <div class="form-group">
                         <label for="signupPassword">Password</label>
-                        <input type="password" id="signupPassword" required minlength="6">
+                        <input type="password" id="signupPassword" required minlength="8">
                     </div>
                     <div class="form-group">
                         <label for="confirmPassword">Confirm Password</label>
@@ -639,7 +639,7 @@
     </div>
 
     <script>
-        const API_BASE_URL = 'http://localhost:5000/api';
+        const API_BASE_URL = 'https://numbersystembackend.onrender.com'; 
         let authToken = null;
         let currentUser = null;
         let allNumbers = [];
@@ -1240,7 +1240,7 @@
         document.getElementById('signupPassword').addEventListener('input', function() {
             const password = this.value;
             const confirmPassword = document.getElementById('confirmPassword');
-            if (password.length < 8) this.setCustomValidity('Password must be at least 6 characters long');
+            if (password.length < 8) this.setCustomValidity('Password must be at least 8 characters long');
             else this.setCustomValidity('');
             if (confirmPassword.value && confirmPassword.value !== password) {
                 confirmPassword.setCustomValidity('Passwords do not match');
