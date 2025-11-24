@@ -4,6 +4,7 @@ import { loginUser } from "./api";
 export default function Login({ onLoginSuccess }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
@@ -28,12 +29,21 @@ export default function Login({ onLoginSuccess }) {
         required
       />
       <input
-        type="password"
+        type={showPassword ? "text" : "password"}
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
       />
+      <label style={{ display: "block", marginTop: 8 }}>
+        <input
+          type="checkbox"
+          checked={showPassword}
+          onChange={(e) => setShowPassword(e.target.checked)}
+        />
+        {' '}
+        Show password
+      </label>
       <button type="submit">Login</button>
       <div>{message}</div>
     </form>
